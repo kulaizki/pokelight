@@ -1,1 +1,1 @@
-A simple pokedex simulator, created using NextJS.
+A simple pokedex simulator, created using NextJS and pokeapi.
