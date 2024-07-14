@@ -30,10 +30,9 @@ const PokemonDetails: React.FC<PokemonCardProps> = ({ pokemon }) => {
   console.log("Pokemon:", pokemon);
 
   return (
-    <div className="flex items-start justify-center gap-4">
+    <div className="flex items-start justify-center gap-4 bg-gradient-to-r from-slate-700 to-slate-900 rounded-lg p-8 border-2 shadow-lg">
       <div className="flex flex-col justify-center items-center gap-4">
         <div className="flex justify-center items-center mx-auto bg-gradient-to-r from-white via-blue-500 to-purple-700 text-white rounded-lg p-4 gap-4 border-2 border-white">
-          {" "}
           <Image src={imageUrl} alt={pokemon.name} width={280} height={280} />
         </div>
         <div className="flex gap-2 items-center">
@@ -56,23 +55,23 @@ const PokemonDetails: React.FC<PokemonCardProps> = ({ pokemon }) => {
       </div>
       <div className="flex flex-col justify-center gap-2">
         <h2 className="text-4xl md:text-2xl">
-          <span className="text-blue-500 font-semibold">HP:</span>{" "}
+          <span className="text-blue-500 font-semibold">HP</span>{" "}
           <span className="text-white">{pokemon.hp}</span>
         </h2>
         <h2 className="text-4xl md:text-2xl">
-          <span className="text-red-500 font-semibold">Attack:</span>{" "}
+          <span className="text-red-500 font-semibold">Attack</span>{" "}
           <span className="text-white">{pokemon.attack}</span>
         </h2>
         <h2 className="text-4xl md:text-2xl">
-          <span className="text-yellow-500 font-semibold">Defense:</span>{" "}
+          <span className="text-yellow-500 font-semibold">Defense</span>{" "}
           <span className="text-white">{pokemon.defense}</span>
         </h2>
         <h2 className="text-4xl md:text-2xl">
-          <span className="text-orange-500 font-semibold">Special-Attack:</span>{" "}
+          <span className="text-orange-500 font-semibold">Special-Attack</span>{" "}
           <span className="text-white">{pokemon.specialAttack}</span>
         </h2>
         <h2 className="text-4xl md:text-2xl">
-          <span className="text-green-500 font-semibold">Special-Defense:</span>{" "}
+          <span className="text-green-500 font-semibold">Special-Defense</span>{" "}
           <span className="text-white">{pokemon.specialDefense}</span>
         </h2>
         <h2 className="text-4xl md:text-2xl">
@@ -80,11 +79,13 @@ const PokemonDetails: React.FC<PokemonCardProps> = ({ pokemon }) => {
           <span className="text-white">{pokemon.speed}</span>
         </h2>
         <h2 className="text-4xl md:text-2xl">
-          <span className="text-purple-500 font-semibold">Weight:</span>{" "}
+          <span className="text-purple-500 font-semibold">Weight</span>{" "}
           <span className="text-white text-1">{pokemon.weight / 10} kg</span>
         </h2>
         <div className="flex gap-2">
-          <h2 className="text-4xl md:text-2xl text-rose-500 font-semibold">Weakness: </h2>
+          <h2 className="text-4xl md:text-2xl text-rose-500 font-semibold">
+            Weakness{" "}
+          </h2>
           {pokemon.types && (
             <div className="flex flex-wrap gap-2">
               {getWeaknesses(
