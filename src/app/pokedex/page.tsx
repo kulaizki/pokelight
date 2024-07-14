@@ -68,9 +68,16 @@ export default function Page() {
           </div>
         )}
       </div>
-      <div className="flex justify-center mt-4">
-        <Button onClick={() => setLimit(limit + 10)} className={"mb-8 bg-blue-600 text-white"}>Load More</Button>
-      </div>
+      {filteredPokemon.length > 0 && (
+        <div className="flex justify-center mt-4">
+          <Button
+            onClick={() => setLimit(limit + 10)}
+            className={"mb-8 bg-blue-600 text-white hover:bg-blue-800"}
+          >
+            Load More
+          </Button>
+        </div>
+      )}
     </section>
   );
 }
