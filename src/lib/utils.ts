@@ -22,9 +22,15 @@ export function getTypeColor(type: string): string {
     flying: 'bg-indigo-500',
     bug: 'bg-lime-500',
     normal: 'bg-gray-400',
-    ground: 'bg-yellow-800',
+    ground: 'bg-yellow-700',
     electric: 'bg-yellow-500',
     fairy: 'bg-pink-400',
+    fighting: 'bg-orange-500',
+    psychic: 'bg-pink-500',
+    rock: 'bg-yellow-900',
+    ice: 'bg-blue-300',
+    ghost: 'bg-deep-purple-500',
+    dragon: 'bg-indigo-700',
   };
 
   return typeColors[type] || 'bg-gray-500'; 
