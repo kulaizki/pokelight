@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import PokemonCard from "@/components/pokemon-card";
 import { getAllPokemons } from "../api/pokemon";
+import { formatPokemonId } from "@/lib/utils";
 
 interface Type {
   name: string;
@@ -20,6 +21,7 @@ interface Pokemon {
 
 export default function Page() {
   const [pokemonData, setPokemonData] = useState<Pokemon[]>([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,14 +32,25 @@ export default function Page() {
     fetchData();
   }, []);
 
+  const filteredPokemon = pokemonData.filter(pokemon =>
+    pokemon.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <section className="md:px-24">
+      <input
+        type="text"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        placeholder="Search Pokemon"
+        className="mb-4"
+      />
       <div className="flex items-center justify-center flex-wrap gap-x-8 p-4 sm:p-8">
-        {pokemonData.map((pokemon, index) => (
+        {filteredPokemon.map((pokemon, index) => (
           <PokemonCard
             key={index}
             pokemon={{
-              id: index + 1,
+              id: formatPokemonId(pokemon.id),
               name: pokemon.name,
               types: pokemon.types,
             }}

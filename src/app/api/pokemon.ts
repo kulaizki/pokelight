@@ -5,7 +5,7 @@ export const getPokemon = async (name: string) => {
   return response.data;
 };
 
-export const getAllPokemons = async (limit = 52, offset = 0) => {
+export const getAllPokemons = async (limit = 10, offset = 0) => {
   const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
   
   const pokemons = response.data.results.map(async (pokemon, index) => {
