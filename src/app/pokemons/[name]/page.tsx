@@ -17,6 +17,14 @@ interface Pokemon {
   name: string;
   id: number;
   types: PokemonType[];
+  height: number;
+  weight: number;
+  hp: number;
+  attack: number;
+  defense: number;
+  specialAttack: number;
+  specialDefense: number;
+  speed: number;
 }
 
 export default function Page({ params }: { params: { name: string } }) {
@@ -46,6 +54,14 @@ export default function Page({ params }: { params: { name: string } }) {
               id: formatPokemonId(pokemon.id),
               name: pokemon.name,
               types: pokemon.types,
+              height: pokemon.height,
+              weight: pokemon.weight,
+              hp: pokemon.stats[0].base_stat,
+              attack: pokemon.stats[1].base_stat,
+              defense: pokemon.stats[2].base_stat ,
+              specialAttack: pokemon.stats[3].base_stat,
+              specialDefense: pokemon.stats[4].base_stat,
+              speed: pokemon.stats[5].base_stat
             }}
           />
         </div>

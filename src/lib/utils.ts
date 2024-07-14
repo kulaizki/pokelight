@@ -35,3 +35,28 @@ export function getTypeColor(type: string): string {
 
   return typeColors[type] || 'bg-gray-500'; 
 }
+
+export function getWeaknesses(types: string[]): string[] {
+  const weaknesses: { [key: string]: string[] } = {
+    grass: ["fire", "ice", "poison", "flying", "bug"],
+    fire: ["water", "rock", "ground"],
+    water: ["electric", "grass"],
+    poison: ["ground", "psychic"],
+    flying: ["electric", "ice", "rock"],
+    bug: ["fire", "flying", "rock"],
+    normal: ["fighting"],
+    ground: ["water", "grass", "ice"],
+    electric: ["ground"],
+    fairy: ["poison", "steel"],
+    fighting: ["flying", "psychic", "fairy"],
+    psychic: ["bug", "ghost", "dark"],
+    rock: ["water", "grass", "fighting", "ground", "steel"],
+    ice: ["fire", "fighting", "rock", "steel"],
+    ghost: ["ghost", "dark"],
+    dragon: ["ice", "dragon", "fairy"],
+  };
+
+  const allWeaknesses = types.map(type => weaknesses[type] || []);
+  const uniqueWeaknesses = Array.from(new Set(allWeaknesses.flat()));
+  return uniqueWeaknesses.filter(weakness => !types.includes(weakness));
+}
