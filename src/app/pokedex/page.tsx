@@ -2,14 +2,19 @@
 
 import { useEffect, useState } from "react";
 import PokemonCard from "@/components/pokemon-card";
-import { getPokemon } from "@/app/api/pokemon";
+import { getAllPokemons } from "../api/pokemon";
+
+interface Pokemon {
+  name: string;
+  id: number;
+}
 
 export default function Page() {
-  const [pokemonData, setPokemonData] = useState(null);
+  const [pokemonData, setPokemonData] = useState<Pokemon[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getPokemon("bulbasaur");
+      const data = await getAllPokemons();
       setPokemonData(data);
     };
 
@@ -18,9 +23,10 @@ export default function Page() {
 
   return (
     <section className="md:px-24">
-      <div className="flex flex-col gap-4 p-4 sm:p-8">
-        <p className="text-sm sm:text-lg max-w-full "></p>
-        {pokemonData && <PokemonCard pokemon={pokemonData} />}
+      <div className="flex items-center justify-center flex-wrap gap-4 p-4 sm:p-8">
+        {pokemonData.map((pokemon, index) => (
+          <PokemonCard key={index} pokemon={{ name: pokemon.name, id: index + 1 }} />
+        ))}
       </div>
     </section>
   );
