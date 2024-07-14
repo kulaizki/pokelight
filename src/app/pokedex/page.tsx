@@ -47,16 +47,22 @@ export default function Page() {
         />
       </div>
       <div className="flex items-center justify-center flex-wrap gap-x-8 p-4 sm:p-8">
-        {filteredPokemon.map((pokemon, index) => (
-          <PokemonCard
-            key={index}
-            pokemon={{
-              id: formatPokemonId(pokemon.id),
-              name: pokemon.name,
-              types: pokemon.types,
-            }}
-          />
-        ))}
+        {filteredPokemon.length > 0 ? (
+          filteredPokemon.map((pokemon, index) => (
+            <PokemonCard
+              key={index}
+              pokemon={{
+                id: formatPokemonId(pokemon.id),
+                name: pokemon.name,
+                types: pokemon.types,
+              }}
+            />
+          ))
+        ) : (
+          <div className="w-full h-64 flex items-center justify-center">
+            <h1 className="text-4xl md:text-6xl">No Pokemon found!</h1>
+          </div>
+        )}
       </div>
     </section>
   );
