@@ -5,17 +5,17 @@ import Image from "next/image";
 import PokemonCard from "@/components/pokemon-card";
 import { getRandomPokemons } from "../api/pokemon";
 import { Button } from "@/components/ui/button";
-import { Pokemon, PokemonData } from "@/app/types/pokemonTypes";
+import { Pokemon, PokemonData as PokemonDataType } from "@/app/types/pokemonTypes";
 
 export default function Page() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const transformPokemonData = (pokemonData: PokemonData): Pokemon => {
+  const transformPokemonData = (pokemonData: PokemonDataType): Pokemon => {
     const stats = Object.fromEntries(
       pokemonData.stats.map(({ stat, base_stat }) => [stat.name, base_stat])
     );
-        
+
     return {
       id: pokemonData.id,
       name: pokemonData.name,
