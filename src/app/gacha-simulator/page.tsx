@@ -52,7 +52,7 @@ export default function Page() {
                 "mb-8 text-white transition duration-300 ease-in-out bg-gradient-to-r from-purple-700 via-pink-500 to-yellow-600 hover:opacity-80"
               }
             >
-              Shuffle
+              Reroll
             </Button>
           </>
         )}
