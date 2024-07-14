@@ -5,7 +5,7 @@ import Image from "next/image";
 import PokemonCard from "@/components/pokemon-card";
 import { getRandomPokemons } from "../api/pokemon";
 import { Button } from "@/components/ui/button";
-import { Pokemon } from "@/app/types/pokemonTypes";
+import { Pokemon, PokemonData } from "@/app/types/pokemonTypes";
 
 export default function Page() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
