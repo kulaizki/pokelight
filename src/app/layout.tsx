@@ -26,7 +26,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className='grid min-h-screen gap-16 px-8 pb-8 pt-2' style={{gridTemplateRows: 'auto 1fr auto'}}>
+          <div className='grid min-h-screen gap-8 px-8 pb-4 pt-2' style={{gridTemplateRows: 'auto 1fr auto'}}>
             <Header />
             <div className='w-full flex items-center justify-center'>{children}</div>
             <Footer />
