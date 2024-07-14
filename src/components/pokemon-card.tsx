@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { capitalize, getTypeColor } from "@/lib/utils";
+import { capitalize, getTypeColor, formatPokemonId } from "@/lib/utils";
 
 interface Type {
   name: string;
@@ -17,9 +17,8 @@ interface Pokemon {
 }
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
-  const id = String(pokemon.id).padStart(3, "0");
+  const id = formatPokemonId(pokemon.id);
   const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png`;
-  console.log("Pokemon:", pokemon);
 
   return (
     <Link href={`/pokemons/${pokemon.name}`}>

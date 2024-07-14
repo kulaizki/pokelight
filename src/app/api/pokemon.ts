@@ -1,16 +1,16 @@
 import axios from 'axios';
 
 export const getPokemon = async (name: string) => {
-  const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-  return response.data;
+  const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  return res.data;
 };
 
 export const getTenPokemons = async (limit = 10, offset = 0) => {
-  const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
+  const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
   
-  const pokemons = response.data.results.map(async (pokemon, index) => {
-    const pokemonResponse = await axios.get(pokemon.url);
-    const pokemonData = pokemonResponse.data;
+  const pokemons = res.data.results.map(async (pokemon, index) => {
+    const pokemonRes = await axios.get(pokemon.url);
+    const pokemonData = pokemonRes.data;
 
     return {
       id: index + 1,
