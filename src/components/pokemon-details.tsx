@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Type, PokemonType, Pokemon } from "@/types/pokemonTypes";
+import { Type, PokemonType, Pokemon } from "@/app/types/pokemonTypes";
 import {
   capitalize,
   getTypeColor,

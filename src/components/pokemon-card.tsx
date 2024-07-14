@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { capitalize, getTypeColor, formatPokemonId } from "@/lib/utils";
-import { Type, PokemonType, Pokemon } from "@/types/pokemonTypes";
+import { Type, PokemonType, Pokemon } from "@/app/types/pokemonTypes";
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
   const id = formatPokemonId(pokemon.id);

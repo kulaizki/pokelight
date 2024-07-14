@@ -15,7 +15,7 @@ export default function Page() {
     const stats = Object.fromEntries(
       pokemonData.stats.map(({ stat, base_stat }) => [stat.name, base_stat])
     );
-
+        
     return {
       id: pokemonData.id,
       name: pokemonData.name,
