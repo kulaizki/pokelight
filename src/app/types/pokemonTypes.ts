@@ -25,7 +25,7 @@ export interface PokemonData {
   name: string;
   height: number;
   weight: number;
-  types: string[];
+  types: Type[];
   stats: {
     hp: number;
     attack: number;
