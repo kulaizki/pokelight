@@ -5,16 +5,33 @@ import Image from "next/image";
 import PokemonCard from "@/components/pokemon-card";
 import { getRandomPokemons } from "../api/pokemon";
 import { Button } from "@/components/ui/button";
-import { Pokemon } from "@/app/types/pokemonTypes"
+import { Pokemon } from "@/app/types/pokemonTypes";
 
 export default function Page() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const transformPokemonData = (pokemonData: PokemonData): Pokemon => {
+    return {
+      id: pokemonData.id,
+      name: pokemonData.name,
+      height: pokemonData.height,
+      weight: pokemonData.weight,
+      types: pokemonData.types,
+      hp: pokemonData.stats.hp,
+      attack: pokemonData.stats.attack,
+      defense: pokemonData.stats.defense,
+      specialAttack: pokemonData.stats.specialAttack,
+      specialDefense: pokemonData.stats.specialDefense,
+      speed: pokemonData.stats.speed,
+    };
+  };
+
   const fetchPokemons = () => {
     setLoading(true);
     getRandomPokemons(8).then((randomPokemons) => {
-      setPokemons(randomPokemons);
+      const transformedPokemons = randomPokemons.map(transformPokemonData);
+      setPokemons(transformedPokemons);
       setLoading(false);
     });
   };
