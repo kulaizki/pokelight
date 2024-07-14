@@ -20,7 +20,7 @@ export function Header() {
   const { theme } = useTheme();
 
   return (
-    <div className="hidden w-full items-center justify-between px-8 md:flex ">
+    <div className="hidden w-full items-center justify-between px-8 md:flex">
       <Link href="/" legacyBehavior passHref>
         <a className="flex items-center space-x-2">
           <Image src={"/pokeball.png"} width={60} height={60} alt="logo" />

@@ -23,7 +23,7 @@ export default function Page() {
 
   return (
     <section className="md:px-24">
-      <div className="flex items-center justify-center flex-wrap gap-x-8 gap-y-12 p-4 sm:p-8">
+      <div className="flex items-center justify-center flex-wrap gap-x-8 p-4 sm:p-8">
         {pokemonData.map((pokemon, index) => (
           <PokemonCard key={index} pokemon={{ name: pokemon.name, id: index + 1 }} />
         ))}
