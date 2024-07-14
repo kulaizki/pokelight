@@ -20,14 +20,14 @@ export interface Pokemon {
   speed: number;
 }
 
-interface Stat {
+export interface Stat {
   base_stat: number;
   stat: {
     name: string;
   };
 }
 
-interface PokemonData {
+export interface PokemonData {
   id: number;
   name: string;
   height: number;
