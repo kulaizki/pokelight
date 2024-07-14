@@ -43,7 +43,7 @@ export function Header() {
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/about" legacyBehavior passHref>
+            <Link href="/gacha-simulator" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Gacha Simulator
               </NavigationMenuLink>
