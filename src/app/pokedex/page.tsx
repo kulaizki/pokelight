@@ -69,7 +69,7 @@ export default function Page() {
         )}
       </div>
       <div className="flex justify-center mt-4">
-        <Button onClick={() => setLimit(limit + 10)} className={"mb-8 bg-blue-400"}>Load More</Button>
+        <Button onClick={() => setLimit(limit + 10)} className={"mb-8 bg-blue-600 text-white"}>Load More</Button>
       </div>
     </section>
   );
