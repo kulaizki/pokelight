@@ -1,16 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import PokemonCard from "@/components/pokemon-card";
 import { getPokemon } from "../../api/pokemon";
+import PokemonDetails from "@/components/pokemon-details";
+import { formatPokemonId } from "@/lib/utils";
+
+interface Type {
+  name: string;
+}
+
+interface PokemonType {
+  type: Type;
+}
 
 interface Pokemon {
   name: string;
   id: number;
+  types: PokemonType[];
 }
 
 export default function Page({ params }: { params: { name: string } }) {
-  const [pokemon, setPokemon] = useState<Pokemon>({});
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -29,11 +39,17 @@ export default function Page({ params }: { params: { name: string } }) {
 
   return (
     <section className="md:px-24">
-      <div className="flex items-center justify-center flex-wrap gap-x-8 p-4 sm:p-8">
-        <h2 className="text-4xl md:text-xl">{pokemon.name}</h2>
-        <h2 className="text-4xl md:text-xl">{pokemon.id}</h2>
-        {/* Display other Pokemon details here */}
-      </div>
+      {pokemon && (
+        <div className="flex items-center justify-center flex-wrap gap-x-8 p-4 sm:p-8">
+          <PokemonDetails
+            pokemon={{
+              id: formatPokemonId(pokemon.id),
+              name: pokemon.name,
+              types: pokemon.types,
+            }}
+          />
+        </div>
+      )}
     </section>
   );
 }

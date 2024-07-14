@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import PokemonCard from "@/components/pokemon-card";
-import { getAllPokemons } from "../api/pokemon";
+import { getTenPokemons } from "../api/pokemon";
 import { formatPokemonId } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -28,7 +28,7 @@ export default function Page() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllPokemons(limit);
+      const data = await getTenPokemons(limit);
       setPokemonData(data);
     };
 
@@ -68,7 +68,7 @@ export default function Page() {
           </div>
         )}
       </div>
-      {filteredPokemon.length > 0 && (
+      {filteredPokemon.length > 0 && search === "" && (
         <div className="flex justify-center mt-4">
           <Button
             onClick={() => setLimit(limit + 10)}
