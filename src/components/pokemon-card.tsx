@@ -1,20 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { capitalize, getTypeColor, formatPokemonId } from "@/lib/utils";
-
-interface Type {
-  name: string;
-}
-
-interface PokemonType {
-  type: Type;
-}
-
-interface Pokemon {
-  name: string;
-  id: number;
-  types: PokemonType[];
-}
+import { Type, PokemonType, Pokemon } from "@/types/pokemon";
 
 const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
   const id = formatPokemonId(pokemon.id);

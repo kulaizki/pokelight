@@ -7,20 +7,7 @@ import { formatPokemonId } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SortFilter } from "@/components/sort-filter";
-
-interface Type {
-  name: string;
-}
-
-interface PokemonType {
-  type: Type;
-}
-
-interface Pokemon {
-  name: string;
-  id: number;
-  types: PokemonType[];
-}
+import { Type, PokemonType, Pokemon } from "@/types/pokemon";
 
 export default function Page() {
   const [pokemonData, setPokemonData] = useState<Pokemon[]>([]);
