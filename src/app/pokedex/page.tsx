@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import PokemonCard from "@/components/pokemon-card";
 import { getAllPokemons } from "../api/pokemon";
 import { formatPokemonId } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 
 interface Type {
   name: string;
@@ -38,13 +39,13 @@ export default function Page() {
 
   return (
     <section className="md:px-24">
-      <input
-        type="text"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-        placeholder="Search Pokemon"
-        className="mb-4"
-      />
+      <div className="flex justify-center ">
+        <Input
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="Search Pokemon"
+        />
+      </div>
       <div className="flex items-center justify-center flex-wrap gap-x-8 p-4 sm:p-8">
         {filteredPokemon.map((pokemon, index) => (
           <PokemonCard
