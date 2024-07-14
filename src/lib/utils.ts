@@ -29,7 +29,7 @@ export function getTypeColor(type: string): string {
     psychic: 'bg-pink-500',
     rock: 'bg-yellow-900',
     ice: 'bg-blue-300',
-    ghost: 'bg-deep-purple-500',
+    ghost: 'bg-purple-900',
     dragon: 'bg-indigo-700',
   };
 
