@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { capitalize } from "@/lib/utils";
 
 interface Pokemon {
   name: string;
-  url: string;
   id: number;
 }
 
@@ -20,7 +20,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
       <div className="flex flex-col justify-center items-center gap-4">
       <div className="flex justify-center items-center mx-auto bg-gradient-to-r from-white via-blue-500 to-purple-700 text-white rounded-lg p-4 gap-4 border-2 border-white transition-all duration-300 ease-in-out hover:border-yellow-500 hover:yellow-lg">          <Image src={imageUrl} alt={pokemon.name} width={200} height={200} />
         </div>
-        <h2 className="text-4xl md:text-3xl">{pokemon.name}</h2>
+        <h2 className="text-4xl md:text-3xl">{capitalize(pokemon.name)}</h2>
       </div>
     </Link>
   );
