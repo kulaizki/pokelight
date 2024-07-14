@@ -11,9 +11,13 @@ export const getPokemonById = async (id: number) => {
 };
 
 export const getTenPokemons = async (limit = 10, offset = 0) => {
+  interface Pokemon {
+    url: string;
+    name: string;
+  }
   const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
   
-  const pokemons = res.data.results.map(async (pokemon, index) => {
+  const pokemons = res.data.results.map(async (pokemon: Pokemon, index) => {
     const pokemonRes = await axios.get(pokemon.url);
     const pokemonData = pokemonRes.data;
 
