@@ -30,7 +30,7 @@ const PokemonDetails: React.FC<PokemonCardProps> = ({ pokemon }) => {
   console.log("Pokemon:", pokemon);
 
   return (
-    <div className="flex items-start justify-center gap-4 bg-gradient-to-r from-slate-700 to-slate-900 rounded-lg p-8 border-2 shadow-lg">
+    <div className="flex items-start justify-center gap-4 bg-gradient-to-r from-slate-800 to-slate-950 rounded-lg p-8 border-2 shadow-lg">
       <div className="flex flex-col justify-center items-center gap-4">
         <div className="flex justify-center items-center mx-auto bg-gradient-to-r from-white via-blue-500 to-purple-700 text-white rounded-lg p-4 gap-4 border-2 border-white">
           <Image src={imageUrl} alt={pokemon.name} width={280} height={280} />
@@ -75,7 +75,7 @@ const PokemonDetails: React.FC<PokemonCardProps> = ({ pokemon }) => {
           <span className="text-white">{pokemon.specialDefense}</span>
         </h2>
         <h2 className="text-4xl md:text-2xl">
-          <span className="text-pink-500 font-semibold">Speed:</span>{" "}
+          <span className="text-pink-500 font-semibold">Speed</span>{" "}
           <span className="text-white">{pokemon.speed}</span>
         </h2>
         <h2 className="text-4xl md:text-2xl">
