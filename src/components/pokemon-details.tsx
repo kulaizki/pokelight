@@ -27,7 +27,6 @@ interface Pokemon {
 const PokemonDetails: React.FC<PokemonCardProps> = ({ pokemon }) => {
   const id = String(pokemon.id).padStart(3, "0");
   const imageUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png`;
-  console.log("Pokemon:", pokemon);
 
   return (
     <div className="flex items-start justify-center gap-4 bg-gradient-to-r from-slate-800 to-slate-950 rounded-lg p-8 border-2 shadow-lg">
