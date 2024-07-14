@@ -20,11 +20,20 @@ export interface Pokemon {
   speed: number;
 }
 
+export interface Stat {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  };
+}
+
 export interface PokemonData {
   id: number;
   name: string;
   height: number;
   weight: number;
   types: PokemonType[];
-  stats: number[];
+  stats: Stat[];
 }

@@ -12,18 +12,22 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
 
   const transformPokemonData = (pokemonData: PokemonData): Pokemon => {
+    const stats = Object.fromEntries(
+      pokemonData.stats.map(({ stat, base_stat }) => [stat.name, base_stat])
+    );
+
     return {
       id: pokemonData.id,
       name: pokemonData.name,
       height: pokemonData.height,
       weight: pokemonData.weight,
       types: pokemonData.types,
-      hp: pokemonData.stats.hp,
-      attack: pokemonData.stats.attack,
-      defense: pokemonData.stats.defense,
-      specialAttack: pokemonData.stats.specialAttack,
-      specialDefense: pokemonData.stats.specialDefense,
-      speed: pokemonData.stats.speed,
+      hp: stats.hp,
+      attack: stats.attack,
+      defense: stats.defense,
+      specialAttack: stats["special-attack"],
+      specialDefense: stats["special-defense"],
+      speed: stats.speed,
     };
   };
 
