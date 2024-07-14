@@ -5,6 +5,7 @@ import PokemonCard from "@/components/pokemon-card";
 import { getAllPokemons } from "../api/pokemon";
 import { formatPokemonId } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface Type {
   name: string;
@@ -22,31 +23,34 @@ interface Pokemon {
 
 export default function Page() {
   const [pokemonData, setPokemonData] = useState<Pokemon[]>([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
+  const [limit, setLimit] = useState(10);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllPokemons();
+      const data = await getAllPokemons(limit);
       setPokemonData(data);
     };
 
     fetchData();
-  }, []);
+  }, [limit]);
 
-  const filteredPokemon = pokemonData.filter(pokemon =>
-    pokemon.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredPokemon = pokemonData
+    .filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(search.toLowerCase())
+    )
+    .slice(0, limit);
 
   return (
     <section className="md:px-24">
       <div className="flex justify-center ">
         <Input
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           placeholder="Search Pokemon"
         />
       </div>
-      <div className="flex items-center justify-center flex-wrap gap-x-8 p-4 sm:p-8">
+      <div className="flex items-center justify-center flex-wrap gap-x-4 gap-y-16 p-4 sm:p-8">
         {filteredPokemon.length > 0 ? (
           filteredPokemon.map((pokemon, index) => (
             <PokemonCard
@@ -63,6 +67,9 @@ export default function Page() {
             <h1 className="text-4xl md:text-6xl">No Pokemon found!</h1>
           </div>
         )}
+      </div>
+      <div className="flex justify-center mt-4">
+        <Button onClick={() => setLimit(limit + 10)} className={"mb-8"}>Load More</Button>
       </div>
     </section>
   );
