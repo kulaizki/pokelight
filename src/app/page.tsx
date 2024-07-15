@@ -2,10 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import PokemonCard from "@/components/pokemon-card";
 import { getPokemon } from "@/app/api/pokemon";
 import { Button } from "@/components/ui/button";
-import { link } from "fs";
 
 export default function Home() {
   const [pokemonData, setPokemonData] = useState(null);
