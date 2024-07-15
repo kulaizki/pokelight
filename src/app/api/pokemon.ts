@@ -7,7 +7,7 @@ interface Pokemon {
 
 interface PokemonData {
   name: string;
-  types: any[]; // Replace `any` with the actual type of `types`
+  types: any[];
 }
 
 export const getPokemon = async (name: string): Promise<PokemonData> => {
