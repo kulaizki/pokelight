@@ -6,10 +6,10 @@ import PokemonDetails from "@/components/pokemon-details";
 import { formatPokemonId } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Type, PokemonType, Pokemon } from "@/app/types/pokemonTypes";
+import { Pokemon } from "@/app/types/pokemonTypes";
 
-export default function Page({ params }: { params: { name: string } }) {
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+export default function Page({ params }: Readonly<{ params: { name: string } }>) {
+  const [pokemon, setPokemon] = useState<Pokemon| null>(null);
   const router = useRouter();
 
   const handleNext = () => {

@@ -1,21 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { getPokemon } from "@/app/api/pokemon";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
-  const [pokemonData, setPokemonData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getPokemon("bulbasaur");
-      setPokemonData(data);
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <div className="flex justify-center p-4 md:p-8">
