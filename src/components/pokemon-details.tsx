@@ -1,10 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Type, PokemonType, Pokemon } from "@/app/types/pokemonTypes";
 import {
   capitalize,
   getTypeColor,
-  formatPokemonId,
   getWeaknesses,
 } from "@/lib/utils";
 
