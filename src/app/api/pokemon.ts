@@ -10,21 +10,25 @@ interface PokemonData {
   types: any[];
 }
 
+const api = axios.create({
+  baseURL: 'https://pokeapi.co/api/v2',
+});
+
 export const getPokemon = async (name: string): Promise<PokemonData> => {
-  const res = await axios.get<PokemonData>(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  const res = await api.get<PokemonData>(`/pokemon/${name}`);
   return res.data;
 };
 
 export const getPokemonById = async (id: number): Promise<string> => {
-  const res = await axios.get<PokemonData>(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  const res = await api.get<PokemonData>(`/pokemon/${id}`);
   return res.data.name;
 };
 
 export const getTenPokemons = async (limit: number = 10, offset: number = 0): Promise<PokemonData[]> => {
-  const res = await axios.get<{ results: Pokemon[] }>(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
+  const res = await api.get<{ results: Pokemon[] }>(`/pokemon?limit=${limit}&offset=${offset}`);
   
   const pokemons = res.data.results.map(async (pokemon, index) => {
-    const pokemonRes = await axios.get<PokemonData>(pokemon.url);
+    const pokemonRes = await api.get<PokemonData>(pokemon.url);
   
     return {
       id: index + 1,
