@@ -80,7 +80,7 @@ export default function PokedexPage() {
       <h1 className="text-4xl font-bold text-center mb-8">Pokédex</h1>
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8 px-4">
         <Input
-          className="max-w-sm"
+          className="w-full md:w-80"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search Pokémon by name..."

@@ -23,7 +23,7 @@ export default function Footer() {
         </p>
         <div className="flex space-x-4 md:pt-0 items-center">
           <Link
-            href="https://github.com/kulaizki/"
+            href="https://github.com/kulaizki/pokedex"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -32,22 +32,6 @@ export default function Footer() {
             <Image
               src="https://skillicons.dev/icons?i=github"
               alt="GitHub"
-              width={40}
-              height={40}
-              className="transition ease-in-out duration-300 hover:scale-110 hover:opacity-75"
-              unoptimized
-            />
-          </Link>
-          <Link
-            href="https://www.linkedin.com/in/kulaizki/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
-          >
-            <Image
-              src="https://skillicons.dev/icons?i=linkedin"
-              alt="LinkedIn"
               width={40}
               height={40}
               className="transition ease-in-out duration-300 hover:scale-110 hover:opacity-75"

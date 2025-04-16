@@ -90,7 +90,7 @@ export default function Header() {
         </div>
       </nav>
 
-      <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} absolute top-full left-0 w-full bg-gray-800 border-t border-gray-700 shadow-lg`}>
+      <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} absolute top-full left-0 w-full bg-gray-900 border-t border-gray-700 shadow-lg`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
