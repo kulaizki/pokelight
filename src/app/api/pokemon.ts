@@ -1,48 +1,89 @@
 import axios from 'axios';
-
-interface Pokemon {
-  url: string;
-  name: string;
-}
-
-interface PokemonData {
-  name: string;
-  types: any[];
-}
+import {
+  Pokemon,
+  PokemonApiResponse,
+  PokemonListResponse,
+  PokemonListItem,
+  PokemonStat,
+  PokemonTypeSlot,
+} from '../types/pokemonTypes';
 
 const api = axios.create({
   baseURL: 'https://pokeapi.co/api/v2',
 });
 
-export const getPokemon = async (name: string): Promise<PokemonData> => {
-  const res = await api.get<PokemonData>(`/pokemon/${name}`);
-  return res.data;
+// Helper function to extract ID from URL
+const extractIdFromUrl = (url: string): number => {
+    const parts = url.split('/').filter(part => part !== '');
+    return parseInt(parts[parts.length - 1], 10);
 };
 
-export const getPokemonById = async (id: number): Promise<string> => {
-  const res = await api.get<PokemonData>(`/pokemon/${id}`);
-  return res.data.name;
+
+// Helper function to map API response to our internal Pokemon type
+const mapApiResponseToPokemon = (apiData: PokemonApiResponse): Pokemon => {
+  const statsMap = apiData.stats.reduce((acc: Record<string, number>, item: PokemonStat) => {
+    acc[item.stat.name] = item.base_stat;
+    return acc;
+  }, {});
+
+  return {
+    id: apiData.id,
+    name: apiData.name,
+    types: apiData.types,
+    height: apiData.height,
+    weight: apiData.weight,
+    hp: statsMap['hp'] ?? 0,
+    attack: statsMap['attack'] ?? 0,
+    defense: statsMap['defense'] ?? 0,
+    specialAttack: statsMap['special-attack'] ?? 0,
+    specialDefense: statsMap['special-defense'] ?? 0,
+    speed: statsMap['speed'] ?? 0,
+    sprite: apiData.sprites.front_default,
+  };
 };
 
-export const getTenPokemons = async (limit: number = 10, offset: number = 0): Promise<PokemonData[]> => {
-  const res = await api.get<{ results: Pokemon[] }>(`/pokemon?limit=${limit}&offset=${offset}`);
-  
-  const pokemons = res.data.results.map(async (pokemon, index) => {
-    const pokemonRes = await api.get<PokemonData>(pokemon.url);
-  
-    return {
-      id: index + 1,
-      name: pokemon.name,
-      types: pokemonRes.data.types,
-    };
-  });
 
-  return Promise.all(pokemons);
+export const getPokemon = async (nameOrId: string | number): Promise<Pokemon> => {
+  const res = await api.get<PokemonApiResponse>(`/pokemon/${nameOrId}`);
+  return mapApiResponseToPokemon(res.data); // Map to internal type
 };
 
-export const getRandomPokemons = async (count: number = 8): Promise<PokemonData[]> => {
-  const randomIds = Array.from({ length: count }, () => Math.floor(Math.random() * 1010) + 1);
-  const pokemonNames = await Promise.all(randomIds.map(id => getPokemonById(id)));
-  const pokemons = pokemonNames.map(name => getPokemon(name));
-  return Promise.all(pokemons);
+// Renamed from getPokemonById and now returns the full Pokemon object
+export const getPokemonById = async (id: number): Promise<Pokemon> => {
+    return getPokemon(id); // Reuse getPokemon
+};
+
+
+export const getPokemonList = async (limit: number = 20, offset: number = 0): Promise<PokemonListResponse> => {
+    const res = await api.get<PokemonListResponse>(`/pokemon?limit=${limit}&offset=${offset}`);
+    return res.data;
+};
+
+
+// Fetches details for a list of pokemon items
+export const getPokemonDetailsList = async (pokemonList: PokemonListItem[]): Promise<Pokemon[]> => {
+    const detailPromises = pokemonList.map(p => getPokemon(p.name));
+    return Promise.all(detailPromises);
+};
+
+
+// Example combining list and details - fetches list then details
+export const getPokemonsWithDetails = async (limit: number = 10, offset: number = 0): Promise<Pokemon[]> => {
+  const listResponse = await getPokemonList(limit, offset);
+  const pokemons = await getPokemonDetailsList(listResponse.results);
+  return pokemons;
+};
+
+
+export const getRandomPokemons = async (count: number = 8): Promise<Pokemon[]> => {
+  // Fetching random IDs between 1 and 1025 (current approximate max Pokemon ID)
+  const maxPokemonId = 1025;
+  const randomIds = Array.from({ length: count }, () => Math.floor(Math.random() * maxPokemonId) + 1);
+  // Fetch details directly using the random IDs
+  const pokemonPromises = randomIds.map(id => getPokemon(id));
+  const results = await Promise.allSettled(pokemonPromises);
+  const successfulPokemons = results
+      .filter((result): result is PromiseFulfilledResult<Pokemon> => result.status === 'fulfilled')
+      .map(result => result.value);
+  return successfulPokemons;
 };
