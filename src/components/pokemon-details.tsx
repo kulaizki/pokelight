@@ -21,7 +21,7 @@ const PokemonDetails: React.FC<PokemonDetailsProps> = ({ pokemon }) => {
   return (
     <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-6 md:gap-10 bg-white dark:bg-gray-800 rounded-lg p-4 md:p-8 shadow-md border border-gray-200 dark:border-gray-700 w-full max-w-4xl mx-auto">
       <div className="flex flex-col justify-center items-center gap-3 flex-shrink-0 w-full md:w-auto">
-        <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 bg-gradient-to-br from-blue-800 via-gray-800 to-yellow-800 rounded-lg p-2 border-2 border-gray-300 dark:border-gray-600 shadow-inner transition-all duration-300 ease-in-out hover:border-yellow-500 hover:shadow-lg">
+        <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 bg-gradient-to-br from-gray-950 via-amber-950 to-yellow-500 rounded-lg p-2 border-2 border-gray-300 dark:border-gray-600 shadow-inner transition-all duration-300 ease-in-out hover:border-yellow-500 hover:shadow-lg">
           <Image 
             src={imageUrl} 
             alt={pokemon.name} 

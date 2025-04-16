@@ -14,7 +14,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ pokemon }) => {
   return (
     <Link href={`/pokemons/${pokemon.name}`}>
       <div className="flex flex-col justify-center items-center gap-2 p-3 md:p-4">
-        <div className="flex justify-center items-center mx-auto text-white rounded-lg p-2 md:p-4 border-2 border-white transition-all duration-300 ease-in-out hover:border-yellow-500 hover:shadow-yellow-lg bg-gradient-to-br from-blue-800 via-gray-800 to-yellow-800">
+        <div className="flex justify-center items-center mx-auto text-white rounded-lg p-2 md:p-4 border-2 border-white transition-all duration-300 ease-in-out hover:border-yellow-500 hover:shadow-yellow-lg bg-gradient-to-br from-gray-950 via-amber-950 to-yellow-500">
           <Image 
             src={imageUrl} 
             alt={pokemon.name} 
