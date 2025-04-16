@@ -8,8 +8,14 @@ import Footer from '@/components/layout/footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'PokéApp',
+  title: 'Pokélight',
   description: 'Explore the world of Pokémon',
+  openGraph: {
+    images: ['/pokemon-yellow.webp'],
+  },
+  icons: {
+    icon: '/pokeball.png',
+  },
 }
 
 export default function RootLayout({
