@@ -9,13 +9,13 @@ export default function Footer() {
       className="py-2 bg-gray-950 border-t border-gray-600 text-white mt-auto"
     >
       <div className="gap-4 max-w-6xl mx-auto px-6 flex flex-row justify-between items-center">
-        <p className="text-xs my-3 text-center md:text-left text-gray-400 sm:text-sm flex items-center">
+        <p className="text-sm my-3 text-center md:text-left text-gray-400 flex items-center">
           &copy; {currentYear} 
           <Link
             href="https://fitzsixto.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-sky-600 hover:from-sky-400 hover:to-sky-700 transition duration-200 ease-in-out ml-1"
+            className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-600 hover:from-yellow-400 hover:to-yellow-700 transition duration-200 ease-in-out ml-1"
           >
             Fitzsixto 
           </Link>

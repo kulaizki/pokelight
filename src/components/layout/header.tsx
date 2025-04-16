@@ -46,16 +46,16 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-gray-950 text-gray-100 shadow-md sticky top-0 z-50 border-b border-gray-600"> {/* Slightly lighter text default */}
+    <header className="bg-gray-950 text-gray-100 shadow-md sticky top-0 z-50 border-b border-gray-600"> 
       <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center gap-4 md:gap-8">
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <Image src="/pokeball.png" alt="Pokeball Logo" width={32} height={32} />
-            <span className="text-xl font-bold text-yellow-400 hover:text-yellow-300 transition-colors hidden sm:inline">
-              PokéApp
+            <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-600">
+              Pokélight
             </span>
           </Link>
-          <div className="hidden md:flex space-x-2"> {/* Reduced space */}
+          <div className="hidden md:flex space-x-2"> 
             {navLinks.map((link) => {
                const isActive = pathname === link.href;
                return (
