@@ -14,6 +14,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/assets/cms2/img/pokedex/full/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'skillicons.dev',
+                port: '',
+                pathname: '/icons/**',
+            },
         ],
     },
 };

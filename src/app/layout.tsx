@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from "@/components/ui/theme-provider"
-import { Header } from '@/components/ui/header'
-import { Footer } from '@/components/ui/footer'
+import Header from '@/components/layout/header'
+import Footer from '@/components/layout/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Pokedex',
-  description: 'Explore the beauty of each Pokemon',
+  title: 'PokéApp',
+  description: 'Explore the world of Pokémon',
 }
 
 export default function RootLayout({
@@ -18,17 +18,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={inter.className}>
+    <html lang='en' suppressHydrationWarning>
+      <body className={`${inter.className} bg-gray-100 dark:bg-gray-900`}>
         <ThemeProvider
           attribute='class'
-          defaultTheme='dark'
+          defaultTheme='system'
           enableSystem
           disableTransitionOnChange
         >
-          <div className='grid min-h-screen gap-8 px-8 pb-4 pt-2' style={{gridTemplateRows: 'auto 1fr auto'}}>
+          <div className='flex flex-col min-h-screen'>
             <Header />
-            <div className='w-full flex items-center justify-center'>{children}</div>
+            <main className='flex-grow container mx-auto px-4 py-8'>
+              {children}
+            </main>
             <Footer />
           </div>
         </ThemeProvider>
