@@ -6,6 +6,7 @@ import {
   PokemonListItem,
   PokemonStat,
   PokemonTypeSlot,
+  PokemonSpeciesApiResponse,
 } from '../types/pokemonTypes';
 
 const api = axios.create({
@@ -20,7 +21,7 @@ const extractIdFromUrl = (url: string): number => {
 
 
 // Helper function to map API response to our internal Pokemon type
-const mapApiResponseToPokemon = (apiData: PokemonApiResponse): Pokemon => {
+const mapApiResponseToPokemon = (apiData: PokemonApiResponse, speciesData: PokemonSpeciesApiResponse): Pokemon => {
   const statsMap = apiData.stats.reduce((acc: Record<string, number>, item: PokemonStat) => {
     acc[item.stat.name] = item.base_stat;
     return acc;
@@ -39,18 +40,32 @@ const mapApiResponseToPokemon = (apiData: PokemonApiResponse): Pokemon => {
     specialDefense: statsMap['special-defense'] ?? 0,
     speed: statsMap['speed'] ?? 0,
     sprite: apiData.sprites.front_default,
+    is_legendary: speciesData.is_legendary,
   };
 };
 
 
 export const getPokemon = async (nameOrId: string | number): Promise<Pokemon> => {
-  const res = await api.get<PokemonApiResponse>(`/pokemon/${nameOrId}`);
-  return mapApiResponseToPokemon(res.data); // Map to internal type
+  let pokemonId: number;
+  let pokemonResData: PokemonApiResponse;
+
+  if (typeof nameOrId === 'string') {
+    const pokemonRes = await api.get<PokemonApiResponse>(`/pokemon/${nameOrId}`);
+    pokemonResData = pokemonRes.data;
+    pokemonId = pokemonRes.data.id;
+  } else {
+    const pokemonRes = await api.get<PokemonApiResponse>(`/pokemon/${nameOrId}`);
+    pokemonResData = pokemonRes.data;
+    pokemonId = nameOrId;
+  }
+
+  const speciesRes = await api.get<PokemonSpeciesApiResponse>(`/pokemon-species/${pokemonId}`);
+  
+  return mapApiResponseToPokemon(pokemonResData, speciesRes.data);
 };
 
-// Renamed from getPokemonById and now returns the full Pokemon object
 export const getPokemonById = async (id: number): Promise<Pokemon> => {
-    return getPokemon(id); // Reuse getPokemon
+    return getPokemon(id); 
 };
 
 
@@ -76,14 +91,25 @@ export const getPokemonsWithDetails = async (limit: number = 10, offset: number 
 
 
 export const getRandomPokemons = async (count: number = 8): Promise<Pokemon[]> => {
-  // Fetching random IDs between 1 and 1025 (current approximate max Pokemon ID)
-  const maxPokemonId = 1025;
-  const randomIds = Array.from({ length: count }, () => Math.floor(Math.random() * maxPokemonId) + 1);
-  // Fetch details directly using the random IDs
-  const pokemonPromises = randomIds.map(id => getPokemon(id));
+  const maxPokemonId = 1025; // Approximate max Pokemon ID
+  const uniqueIds = new Set<number>();
+  
+  // Generate unique random IDs
+  while (uniqueIds.size < count) {
+    const randomId = Math.floor(Math.random() * maxPokemonId) + 1;
+    uniqueIds.add(randomId);
+  }
+
+  const randomIdsArray = Array.from(uniqueIds);
+
+  // Fetch details using the unique random IDs
+  const pokemonPromises = randomIdsArray.map(id => getPokemon(id));
+  
   const results = await Promise.allSettled(pokemonPromises);
+  
   const successfulPokemons = results
-      .filter((result): result is PromiseFulfilledResult<Pokemon> => result.status === 'fulfilled')
-      .map(result => result.value);
+    .filter((result): result is PromiseFulfilledResult<Pokemon> => result.status === 'fulfilled')
+    .map(result => result.value);
+    
   return successfulPokemons;
 };

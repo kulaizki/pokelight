@@ -8,6 +8,7 @@ import Footer from '@/components/layout/footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('http://localhost:3000'),
   title: 'Pokélight',
   description: 'Explore the world of Pokémon',
   openGraph: {

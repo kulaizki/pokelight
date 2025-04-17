@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-8 md:gap-12 min-h-[calc(100vh-200px)]">
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 animate-fadeInUp opacity-0" style={{ animationFillMode: 'forwards' }}>
         <Image
           src="/arceus-transparent.png"
           alt="Pokemon illustration"
@@ -18,7 +18,7 @@ export default function Home() {
           priority
         />
       </div>
-      <div className="flex flex-col items-center md:items-start gap-4 md:gap-6 max-w-xl">
+      <div className="flex flex-col items-center md:items-start gap-4 md:gap-6 max-w-xl animate-fadeInUp opacity-0" style={{ animationDelay: '200ms', animationFillMode: 'forwards' }}>
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
           Explore the World of Pokémon
         </h1>

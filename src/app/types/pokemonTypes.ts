@@ -29,6 +29,12 @@ export interface PokemonApiResponse {
   sprites: PokemonSprites;
 }
 
+export interface PokemonSpeciesApiResponse {
+  is_baby: boolean;
+  is_legendary: boolean;
+  is_mythical: boolean;
+  // Add other fields from species endpoint if needed later
+}
 
 export interface PokemonListItem {
     name: string;
@@ -41,8 +47,6 @@ export interface PokemonListResponse {
     previous: string | null;
     results: PokemonListItem[];
 }
-
-
 
 export interface Pokemon {
   id: number;
@@ -57,4 +61,5 @@ export interface Pokemon {
   specialDefense: number;
   speed: number;
   sprite: string | null; 
+  is_legendary: boolean;
 }
