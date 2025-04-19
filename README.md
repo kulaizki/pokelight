@@ -2,7 +2,7 @@
 
 A Pokedex simulator, created using Next.js and PokeAPI.
 
-https://github.com/user-attachments/assets/cb5a2e65-93af-47e8-95bd-3baecdf3e3c6
+https://github.com/user-attachments/assets/29073ace-51c0-4e06-951f-17a295bd10a7
 
 ## Getting Started
 
