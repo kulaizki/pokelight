@@ -2,7 +2,7 @@
 
 A Pokedex simulator, created using Next.js and PokeAPI.
 
-![Preview](/public/pokelight-yellow.webp)
+https://github.com/user-attachments/assets/cb5a2e65-93af-47e8-95bd-3baecdf3e3c6
 
 ## Getting Started
 
