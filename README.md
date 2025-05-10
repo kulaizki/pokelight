@@ -1,8 +1,34 @@
-# Pokedex Simulator
+# Pokelight 
 
 A Pokedex simulator, created using Next.js and PokeAPI.
 
 https://github.com/user-attachments/assets/29073ace-51c0-4e06-951f-17a295bd10a7
+
+## Features
+
+### Pokédex
+- Browse through a comprehensive collection of Pokémon
+- Search Pokémon by name
+- Sort Pokémon by ID or name
+- Infinite scroll with "Load More" functionality
+- Responsive grid layout for optimal viewing on all devices
+- Beautiful card design with Pokémon images and type indicators
+
+### Detailed Pokémon Information
+- View detailed information for each Pokémon including:
+  - High-quality official artwork
+  - Base stats (HP, Attack, Defense, Special Attack, Special Defense, Speed)
+  - Physical attributes (Height and Weight)
+  - Type information with color-coded type badges
+  - Weakness analysis
+  - Special indicators for legendary Pokémon
+- Navigate between Pokémon using Previous/Next buttons
+
+### Gacha Simulator
+- Random Pokémon generator
+- Get 8 random Pokémon at a time
+- Reroll functionality to discover new Pokémon
+- Same beautiful card design as the Pokédex
 
 ## Getting Started
 
