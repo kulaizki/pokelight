@@ -73,6 +73,7 @@
 @layer base {
   * {
     @apply border-border;
+    scrollbar-gutter: stable;
   }
   body {
     @apply bg-background text-foreground;
